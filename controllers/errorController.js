@@ -1,3 +1,17 @@
+const ErrorHandler = require('../utils/errorHandler');
+
+const handleCastErrorDB = (err) => {
+	const message = `Invalid ${err.path}: ${err.value}.`;
+	return new ErrorHandler(message, 400);
+};
+
+const handleDuplicateFieldsDB = (err) => {
+	const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+	const message = `Duplicate field value: ${value}. Please use another value`;
+
+	return new ErrorHandler(message, 400);
+};
+
 const sendErrorDev = (err, res) => {
 	res.status(err.statusCode).json({
 		status: err.status,
@@ -30,11 +44,11 @@ module.exports = (err, req, res, next) => {
 	if (process.env.NODE_ENV === 'development') {
 		sendErrorDev(err, res);
 	} else if (process.env.NODE_ENV === 'production') {
-		sendErrorProd(err, res);
+		let error = { ...err };
 
-		res.status(err.statusCode).json({
-			status: err.status,
-			message: err.message,
-		});
+		if (err.name === 'CastError') error = handleCastErrorDB(err);
+		if (err.code === 11000) error = handleDuplicateFieldsDB(err);
+
+		sendErrorProd(error, res);
 	}
 };
