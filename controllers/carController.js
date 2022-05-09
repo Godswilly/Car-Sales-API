@@ -7,7 +7,6 @@ exports.createCar = asyncHandler(async (req, res, next) => {
 
 	res.status(201).json({
 		status: 'success',
-		count: car.length,
 		data: {
 			car,
 		},
@@ -53,7 +52,6 @@ exports.updateCar = asyncHandler(async (req, res, next) => {
 
 	res.status(200).json({
 		status: 'success',
-		count: car.length,
 		data: {
 			car,
 		},

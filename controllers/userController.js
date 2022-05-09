@@ -7,7 +7,6 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
 	res.status(201).json({
 		status: 'success',
-		count: user.length,
 		data: {
 			user,
 		},
