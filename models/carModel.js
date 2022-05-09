@@ -2,14 +2,6 @@ const mongoose = require('mongoose');
 const slugify = require('slugify');
 
 const carSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: [true, 'A car must have a name'],
-		unique: true,
-		trim: true,
-		maxlength: [20, 'A car name must have less or equal to 20 characters'],
-		minlength: [3, 'A car name must have more or equal to 3 characters'],
-	},
 	price: {
 		type: Number,
 		required: [true, 'A car must have a price'],
@@ -29,17 +21,13 @@ const carSchema = new mongoose.Schema({
 		default: Date.now(),
 		select: false,
 	},
-	year: {
-		type: Number,
-		required: [true, 'A car must have a manufacture year'],
-	},
 	mileage: {
 		type: Number,
 		required: [true, 'A car must have milage record'],
 	},
-	brand: {
+	make: {
 		type: String,
-		required: [true, 'A car must have a brand name'],
+		required: [true, 'A car must have a make'],
 		enum: {
 			values: [
 				'BMW',
@@ -51,8 +39,12 @@ const carSchema = new mongoose.Schema({
 				'Hondai',
 			],
 			message:
-				'Brand name should either be: BMW, Mercedes Benz, Audi, Toyota, Innoson, Tesla, Hondai',
+				'Make should either be: BMW, Mercedes Benz, Audi, Toyota, Innoson, Tesla, Hondai',
 		},
+	},
+	year: {
+		type: Number,
+		required: [true, 'A car must have a manufacture year'],
 	},
 	slug: String,
 });
