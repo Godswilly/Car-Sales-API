@@ -55,3 +55,25 @@ exports.getCar = async (req, res) => {
 		});
 	}
 };
+
+exports.updateCar = async (req, res) => {
+	try {
+		const car = await Car.findByIdAndUpdate(req.params.id, req.body, {
+			new: true,
+			runValidators: true,
+		});
+
+		res.status(200).json({
+			status: 'success',
+			count: car.length,
+			data: {
+				car,
+			},
+		});
+	} catch (error) {
+		res.status(404).json({
+			status: 'fail',
+			message: error,
+		});
+	}
+};
