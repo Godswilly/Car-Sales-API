@@ -37,3 +37,21 @@ exports.getAllCars = async (req, res) => {
 		});
 	}
 };
+
+exports.getCar = async (req, res) => {
+	try {
+		const car = await Car.findById(req.params.id);
+
+		res.status(200).json({
+			status: 'success',
+			data: {
+				car,
+			},
+		});
+	} catch (error) {
+		res.status(404).json({
+			status: 'fail',
+			message: error,
+		});
+	}
+};
