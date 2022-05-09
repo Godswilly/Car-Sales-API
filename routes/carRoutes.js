@@ -6,13 +6,25 @@ const router = express.Router();
 
 router
 	.route('/')
-	.get(authController.protect, carController.getAllCars)
-	.post(carController.createCar);
+	.get(carController.getAllCars)
+	.post(
+		authController.protect,
+		authController.roleAccess('admin', 'user'),
+		carController.createCar
+	);
 
 router
 	.route('/:id')
 	.get(carController.getCar)
-	.patch(carController.updateCar)
-	.delete(carController.deleteCar);
+	.patch(
+		authController.protect,
+		authController.roleAccess('user'),
+		carController.updateCar
+	)
+	.delete(
+		authController.protect,
+		authController.roleAccess('user'),
+		carController.deleteCar
+	);
 
 module.exports = router;

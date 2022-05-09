@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const slugify = require('slugify');
 
 const carSchema = new mongoose.Schema({
 	price: {
@@ -7,7 +6,7 @@ const carSchema = new mongoose.Schema({
 		required: [true, 'A car must have a price'],
 	},
 	images: [String],
-	model: {
+	carModel: {
 		type: String,
 		required: [true, 'A car must have a model'],
 	},
@@ -25,7 +24,7 @@ const carSchema = new mongoose.Schema({
 		type: Number,
 		required: [true, 'A car must have milage record'],
 	},
-	make: {
+	carMake: {
 		type: String,
 		required: [true, 'A car must have a make'],
 		enum: {
@@ -46,7 +45,6 @@ const carSchema = new mongoose.Schema({
 		type: Number,
 		required: [true, 'A car must have a manufacture year'],
 	},
-	slug: String,
 	user: {
 		type: mongoose.Schema.ObjectId,
 		ref: 'User',
