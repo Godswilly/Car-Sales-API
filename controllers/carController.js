@@ -1,6 +1,6 @@
 const Car = require('../models/carModel');
 
-exports.createCar = async (req, res) => {
+exports.createCar = async (req, res, next) => {
 	try {
 		const car = await Car.create(req.body);
 
@@ -19,7 +19,7 @@ exports.createCar = async (req, res) => {
 	}
 };
 
-exports.getAllCars = async (req, res) => {
+exports.getAllCars = async (req, res, next) => {
 	try {
 		const cars = await Car.find({});
 
@@ -38,7 +38,7 @@ exports.getAllCars = async (req, res) => {
 	}
 };
 
-exports.getCar = async (req, res) => {
+exports.getCar = async (req, res, next) => {
 	try {
 		const car = await Car.findById(req.params.id);
 
@@ -56,7 +56,7 @@ exports.getCar = async (req, res) => {
 	}
 };
 
-exports.updateCar = async (req, res) => {
+exports.updateCar = async (req, res, next) => {
 	try {
 		const car = await Car.findByIdAndUpdate(req.params.id, req.body, {
 			new: true,
@@ -77,7 +77,7 @@ exports.updateCar = async (req, res) => {
 		});
 	}
 };
-exports.deleteCar = async (req, res) => {
+exports.deleteCar = async (req, res, next) => {
 	try {
 		await Car.findByIdAndDelete(req.params.id);
 
