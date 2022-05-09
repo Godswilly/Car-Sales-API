@@ -1,94 +1,74 @@
 const Car = require('../models/carModel');
+const asyncHandler = require('../utils/asyncHandler');
+const ErrorHandler = require('../utils/errorHandler');
 
-exports.createCar = async (req, res, next) => {
-	try {
-		const car = await Car.create(req.body);
+exports.createCar = asyncHandler(async (req, res, next) => {
+	const car = await Car.create(req.body);
 
-		res.status(201).json({
-			status: 'success',
-			count: car.length,
-			data: {
-				car,
-			},
-		});
-	} catch (error) {
-		res.status(404).json({
-			status: 'fail',
-			message: error,
-		});
+	res.status(201).json({
+		status: 'success',
+		count: car.length,
+		data: {
+			car,
+		},
+	});
+});
+
+exports.getAllCars = asyncHandler(async (req, res, next) => {
+	const cars = await Car.find({});
+
+	res.status(200).json({
+		status: 'success',
+		count: cars.length,
+		data: {
+			cars,
+		},
+	});
+});
+
+exports.getCar = asyncHandler(async (req, res, next) => {
+	const car = await Car.findById(req.params.id);
+
+	if (!car) {
+		throw new ErrorHandler('No car found with the given ID', 404);
 	}
-};
 
-exports.getAllCars = async (req, res, next) => {
-	try {
-		const cars = await Car.find({});
+	res.status(200).json({
+		status: 'success',
+		data: {
+			car,
+		},
+	});
+});
 
-		res.status(200).json({
-			status: 'success',
-			count: cars.length,
-			data: {
-				cars,
-			},
-		});
-	} catch (error) {
-		res.status(404).json({
-			status: 'fail',
-			message: error,
-		});
+exports.updateCar = asyncHandler(async (req, res, next) => {
+	const car = await Car.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+		runValidators: true,
+	});
+
+	if (!car) {
+		throw new ErrorHandler('No car found with the given ID', 404);
 	}
-};
 
-exports.getCar = async (req, res, next) => {
-	try {
-		const car = await Car.findById(req.params.id);
+	res.status(200).json({
+		status: 'success',
+		count: car.length,
+		data: {
+			car,
+		},
+	});
+});
 
-		res.status(200).json({
-			status: 'success',
-			data: {
-				car,
-			},
-		});
-	} catch (error) {
-		res.status(404).json({
-			status: 'fail',
-			message: error,
-		});
+exports.deleteCar = asyncHandler(async (req, res, next) => {
+	const car = await Car.findByIdAndDelete(req.params.id);
+
+	if (!car) {
+		throw new ErrorHandler('No car found with the given ID', 404);
 	}
-};
 
-exports.updateCar = async (req, res, next) => {
-	try {
-		const car = await Car.findByIdAndUpdate(req.params.id, req.body, {
-			new: true,
-			runValidators: true,
-		});
-
-		res.status(200).json({
-			status: 'success',
-			count: car.length,
-			data: {
-				car,
-			},
-		});
-	} catch (error) {
-		res.status(404).json({
-			status: 'fail',
-			message: error,
-		});
-	}
-};
-exports.deleteCar = async (req, res, next) => {
-	try {
-		await Car.findByIdAndDelete(req.params.id);
-
-		res.status(204).json({
-			status: 'success',
-			data: null,
-		});
-	} catch (error) {
-		res.status(404).json({
-			status: 'fail',
-			message: error,
-		});
-	}
-};
+	res.status(204).json({
+		status: 'Car deleted successfully',
+		data: null,
+	});
+});
