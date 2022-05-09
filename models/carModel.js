@@ -47,6 +47,11 @@ const carSchema = new mongoose.Schema({
 		required: [true, 'A car must have a manufacture year'],
 	},
 	slug: String,
+	user: {
+		type: mongoose.Schema.ObjectId,
+		ref: 'User',
+		required: [true, 'Car must belong to a user.'],
+	},
 });
 
 const Car = mongoose.model('Car', carSchema);
