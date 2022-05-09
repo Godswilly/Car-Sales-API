@@ -3,6 +3,8 @@ const morgan = require('morgan');
 
 const carRouter = require('./routes/carRoutes');
 const userRouter = require('./routes/userRoutes');
+const ErrorHandler = require('./utils/errorHandler');
+const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
 
@@ -15,5 +17,11 @@ if (process.env.NODE_ENV === 'development') {
 //routes
 app.use('/api/v1/cars', carRouter);
 app.use('/api/v1/users', userRouter);
+
+app.all('*', (req, res, next) => {
+	next(new ErrorHandler(`Can't find ${req.originalUrl} on this server!`, 404));
+});
+
+app.use(globalErrorHandler);
 
 module.exports = app;
