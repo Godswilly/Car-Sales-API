@@ -18,3 +18,22 @@ exports.createCar = async (req, res) => {
 		});
 	}
 };
+
+exports.getAllCars = async (req, res) => {
+	try {
+		const cars = await Car.find({});
+
+		res.status(200).json({
+			status: 'success',
+			count: cars.length,
+			data: {
+				cars,
+			},
+		});
+	} catch (error) {
+		res.status(404).json({
+			status: 'fail',
+			message: error,
+		});
+	}
+};

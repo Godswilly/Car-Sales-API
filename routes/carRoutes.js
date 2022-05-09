@@ -3,8 +3,6 @@ const carController = require('../controllers/carController');
 
 const router = express.Router();
 
-router
-	.route('/')
-	.post(carController.createCar);
+router.route('/').get(carController.getAllCars).post(carController.createCar);
 
-  module.exports = router;
+module.exports = router;
