@@ -1,4 +1,5 @@
 const express = require('express');
+const upload = require('../utils/multer');
 const carController = require('../controllers/carController');
 const authController = require('../controllers/authController');
 
@@ -10,6 +11,7 @@ router
 	.post(
 		authController.protect,
 		authController.roleAccess('admin', 'user'),
+		upload,
 		carController.createCar
 	);
 

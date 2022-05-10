@@ -20,14 +20,19 @@
   "homepage": "https://github.com/Godswilly/Car-Sales-API#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.29.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.18.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.2",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
     "slugify": "^1.6.5",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "eslint": "^8.15.0",
