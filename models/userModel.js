@@ -3,11 +3,11 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-	name: {
+	username: {
 		type: String,
-		required: [true, 'Please enter your name'],
-		minlength: [3, 'Name must have more or equal to 3 characters'],
-		maxlength: [20, 'Name must have less or equal to 20 characters'],
+		required: [true, 'Please enter your username'],
+		minlength: [3, 'Username must have more or equal to 3 characters'],
+		maxlength: [20, 'Username must have less or equal to 20 characters'],
 	},
 	email: {
 		type: String,
@@ -67,19 +67,19 @@ userSchema.methods.correctPassword = async function (
 };
 
 userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
-  if (this.passwordChangedAt) {
-    const changedTimestamp = parseInt(
-      this.passwordChangedAt.getTime() / 1000,
-      10
-    );
+	if (this.passwordChangedAt) {
+		const changedTimestamp = parseInt(
+			this.passwordChangedAt.getTime() / 1000,
+			10
+		);
 
-    // True Means Changed Password
+		// True Means Changed Password
 
-    return JWTTimestamp < changedTimestamp;
-  }
+		return JWTTimestamp < changedTimestamp;
+	}
 
-  // False means NOT changed
-  return false;
+	// False means NOT changed
+	return false;
 };
 
 const User = mongoose.model('User', userSchema);
