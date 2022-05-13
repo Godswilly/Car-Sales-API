@@ -40,9 +40,9 @@ const carSchema = new mongoose.Schema({
 			message:
 				'Make should either be: BMW, Mercedes Benz, Audi, Toyota, Innoson, Tesla, Hondai',
 		},
-	},
+	 },
 	year: {
-		type: Number,
+		type: String,
 		required: [true, 'A car must have a manufacture year'],
 	},
 	user: {

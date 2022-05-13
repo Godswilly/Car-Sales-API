@@ -99,3 +99,15 @@ exports.deleteCar = asyncHandler(async (req, res) => {
 		data: null,
 	});
 });
+
+exports.getMyCars = asyncHandler(async (req, res) => {
+	const myCars = await Car.find({ user: req.user.id });
+
+	res.status(200).json({
+		count: myCars.length,
+		status: 'Success',
+		data: {
+			myCars,
+		},
+	});
+});

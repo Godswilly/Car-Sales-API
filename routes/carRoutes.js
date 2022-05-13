@@ -4,15 +4,12 @@ const carController = require('../controllers/carController');
 const authController = require('../controllers/authController');
 
 const router = express.Router();
+router.get('/myCars', authController.protect, carController.getMyCars);
 
 router
 	.route('/')
 	.get(carController.getAllCars)
-	.post(
-		authController.protect,
-		upload,
-		carController.createCar
-	);
+	.post(authController.protect, upload, carController.createCar);
 
 router
 	.route('/:id')
