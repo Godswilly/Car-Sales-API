@@ -10,7 +10,6 @@ router
 	.get(carController.getAllCars)
 	.post(
 		authController.protect,
-		authController.roleAccess('admin', 'user'),
 		upload,
 		carController.createCar
 	);
