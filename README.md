@@ -1,7 +1,6 @@
-# Car-Sales-API 
+# Car-Sales-API
 
 ## This is an application built with express.js, node.js, and MongoDB, for posting cars. The app provides authenticated and unauthenticated users with a list of car postings. To post, update and delete a car, the user needs to signup or log in. All other actions can be done without being authenticated.
-
 
 ## Built With
 
@@ -13,7 +12,6 @@
 ## Live version
 
 ### [Live Version](https://buy-cars.herokuapp.com/api/v1/cars)
-
 
 ## Getting Started
 
@@ -43,7 +41,53 @@ Start server with:
 
 Open `http://localhost:8000/api/v1/cars` in your browser.
 
-### Deployment
+cd /Car-Sales-API
+
+```
+- Set required credential in `config.env`
+```
+
+install node packages
+
+```
+npm install
+```
+
+Run server
+
+```
+npm run start // prod mode
+npm run dev // dev mode
+```
+
+### Implemented endpoints:
+
+#### /auth
+
+| Path                | Method | Description |
+| ------------------- | ------ | ----------- |
+| api/v1/users/login  | POST   | Login       |
+| api/v1/users/signup | POST   | Signup      |
+
+#### /users
+
+| Path             | Method | Description      |
+| ---------------- | ------ | ---------------- |
+| api/v1/users     | GET    | List All Users   |
+| api/v1/users/:id | GET    | Get A User By Id |
+| api/v1/users     | PATCH  | Update A User    |
+| api/v1/users/:id | DELETE | Delete A User    |
+
+#### /cars
+
+| Path                | Method | Description                                |
+| ------------------- | ------ | ------------------------------------------ |
+| api/v1/posts        | GET |List All Ca                              |
+| api/v1/posts        | POST   | Create A Car                               |
+| api/v1/posts/:id    | GET    | Get A Car By Id                            |
+| api/v1/posts/:id    | PATCH  | Update A Car                               |
+| api/v1/posts/:id    | DELETE | Delete A Car                               |
+| api/v1/posts/myCars | GET    | List All Cars Posted By The Logged In User |
 
 ## Authors
 
