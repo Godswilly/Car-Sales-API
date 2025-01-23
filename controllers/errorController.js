@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable prettier/prettier */
 const ErrorHandler = require('../utils/errorHandler');
 
 const handleValidationErrorDB = (err) => {

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const User = require('../models/userModel');
 const asyncHandler = require('../utils/asyncHandler');
 const ErrorHandler = require('../utils/errorHandler');

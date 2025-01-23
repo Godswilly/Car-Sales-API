@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const multer = require('multer');
 const ErrorHandler = require('./errorHandler');
 

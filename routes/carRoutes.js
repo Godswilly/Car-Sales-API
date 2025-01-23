@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const express = require('express');
 const upload = require('../utils/multer');
 const carController = require('../controllers/carController');

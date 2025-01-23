@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable prettier/prettier */
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 

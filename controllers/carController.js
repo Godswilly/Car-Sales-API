@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const fs = require('fs');
 const Car = require('../models/carModel');
 const cloudinary = require('../utils/cloudinary');

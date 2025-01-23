@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable prettier/prettier */
 const cloudinary = require('cloudinary');
 const dotenv = require('dotenv');
 
